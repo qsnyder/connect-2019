@@ -1,0 +1,73 @@
+---
+#
+# Initial testing of Ansible automation on NXOS9000v in VIRL
+# Demonstration of linear playbook for single host (n9k1) using NXAPI transport
+#
+# Author: Quinn Snyder, Systems Engineer | Enterprise Southwest .:|:.:|:. Cisco Systems
+# Date: 2018-02-01
+# Version: 0.1a
+#
+- name: Demonstration of automation of Nexus 9000v-1 running in VIRL using Ansible NXAPI transport
+  hosts: n9k1
+  connection: network
+  gather_facts: no
+  vars:
+    nxapi:
+      username: admin
+      password: admin
+      port: 8080
+      transport: nxapi
+      use_ssl: no
+      timeout: 30
+      validate_certs: false
+
+  tasks:
+
+    - name: Ensure the OSPF feature is enabled
+      nxos_feature:
+        feature: ospf
+        state: enabled
+        provider: "{{ nxapi }}"
+
+    - name: Configure Loopback0
+      nxos_interface:
+        description: 'Configured by Ansible'
+        interface: loopback 0
+        admin_state: up
+        provider: "{{ nxapi }}"
+
+    - name: Configure IP address on Loopback0
+      nxos_l3_interface:
+        name: Loopback0
+        state: present
+        ipv4: 1.1.1.1/32
+        provider: "{{ nxapi }}"
+
+    - name: Configure IP address on Ethernet1/2
+      nxos_l3_interface:
+        name: Ethernet1/2
+        state: present
+        ipv4: 12.12.12.12/24
+        provider: "{{ nxapi }}"
+
+    - name: Enable the OSPF process on the switch
+      nxos_ospf:
+        ospf: 1
+        state: present
+        provider: "{{ nxapi }}"
+
+    - name: Configure OSPF on Ethernet1/2
+      nxos_interface_ospf:
+        interface: Ethernet1/2
+        ospf: 1
+        area: 0
+        cost: default
+        provider: "{{ nxapi }}"
+
+    - name: Configure OSPF on Loopback0
+      nxos_interface_ospf:
+        interface: Loopback0
+        ospf: 1
+        area: 0
+        cost: default
+        provider: "{{ nxapi }}"

@@ -1,0 +1,50 @@
+---
+#
+# Initial testing of Ansible automation on NXOS9000v in VIRL
+# Resetting of both NXOS9000v hosts back to original state using single playbook
+#
+# Author: Quinn Snyder, Systems Engineer | Enterprise Southwest .:|:.:|:. Cisco Systems
+# Date: 2018-02-26
+# Version: 0.1a
+#
+- name: Reverting n9k1, n9k2 back to VIRL initialized state
+  hosts: all
+  connection: network
+  gather_facts: no
+  vars:
+    nxapi:
+      username: admin
+      password: admin
+      port: 8080
+      transport: nxapi
+      use_ssl: no
+      timeout: 30
+      validate_certs: false
+
+  tasks:
+
+    - name: Ensure ospf is removed on the switches
+      nxos_feature:
+        feature: ospf
+        state: disabled
+        provider: "{{ nxapi }}"
+
+    - name: Shutdown E1/2 interfaces
+      nxos_interface:
+        description: 'Shutdown by Ansible'
+        interface: Ethernet1/2
+        admin_state: down
+        provider: "{{ nxapi }}"
+
+    - name: Remove E1/2 IP addresses
+      nxos_config:
+        lines:
+          - interface ethernet1/2
+          - no ip address
+        provider: "{{ nxapi }}"
+
+    - name: Remove loopback0 interfaces
+      nxos_interface:
+        interface: loopback0
+        state: absent
+        provider: "{{ nxapi }}"
