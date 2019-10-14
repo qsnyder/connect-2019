@@ -1,3 +1,24 @@
+---
+#
+# Role demonstration of multihost playbook leveraging variables at both the host and group level
+# Uses a "pause" function to ensure that OSPF converges.
+#
+# Author: Quinn Snyder, Systems Architect | Enterprise Southwest .:|:.:|:. Cisco Systems
+# Date: 2019-10-14
+# Version: 0.2a
+#
+
+- name: Enable NXAPI with HTTP (8080) and HTTPS (8443)
+  nxos_nxapi:
+    http_port: 8080
+    http: yes
+    https_port: 8443
+    https: yes
+
+- name: Enable NXAPI to use-vrf management
+  nxos_config:
+    lines: nxapi use-vrf management
+
 - name: Enable the OSPF feature on each switch
   nxos_feature:
     feature: ospf

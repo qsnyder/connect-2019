@@ -1,11 +1,10 @@
 ---
 #
 # Role to create reversion of configuration under failed OSPF routing conditions
-# Demonstration of Ansible v2.4.0.0 running locally against hosts in PHX2 lab
 #
-# Author: Quinn Snyder, Systems Engineer | Enterprise Southwest
-# Date: 2018-02-01
-# Version: 0.1a
+# Author: Quinn Snyder, Systems Architect | Enterprise Southwest .:|:.:|:. Cisco Systems
+# Date: 2019-10-14
+# Version: 0.2a
 #
 - name: Ensure ospf is removed on the switches
   nxos_feature:
@@ -32,3 +31,7 @@
     interface: loopback0
     state: absent
     provider: "{{ nxapi }}"
+
+- name: Remove NXAPI configuration
+  nxos_nxapi:
+    state: absent

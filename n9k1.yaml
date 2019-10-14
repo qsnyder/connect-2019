@@ -3,13 +3,13 @@
 # Initial testing of Ansible automation on NXOS9000v in VIRL
 # Demonstration of linear playbook for single host (n9k1) using NXAPI transport
 #
-# Author: Quinn Snyder, Systems Engineer | Enterprise Southwest .:|:.:|:. Cisco Systems
-# Date: 2018-02-01
-# Version: 0.1a
+# Author: Quinn Snyder, Systems Architect | Enterprise Southwest .:|:.:|:. Cisco Systems
+# Date: 2019-10-14
+# Version: 0.2a
 #
 - name: Demonstration of automation of Nexus 9000v-1 running in VIRL using Ansible NXAPI transport
   hosts: n9k1
-  connection: network
+  connection: local
   gather_facts: no
   vars:
     nxapi:

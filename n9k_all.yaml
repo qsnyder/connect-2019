@@ -5,19 +5,30 @@
 # notifications.  Spark token is encrypted in a Vault file, protected by a password.
 # Uses a "pause" function to ensure that OSPF converges prior to calling the conditional reversion task
 #
-# Author: Quinn Snyder, Systems Engineer | Enterprise Southwest .:|:.:|:. Cisco Systems
-# Date: 2018-02-26
-# Version: 0.1a
+# Author: Quinn Snyder, Systems Architect | Enterprise Southwest .:|:.:|:. Cisco Systems
+# Date: 2019-10-14
+# Version: 0.2a
 #
 - name: Demonstration of automation of Nexus 9000v devices running in VIRL using Ansible
   hosts: all
-  connection: network
+  connection: local
   gather_facts: no
 
   tasks:
 
     - name: Decrypting the Vault file
       include_vars: "./vault.yml"
+
+    - name: Enable NXAPI with HTTP (8080) and HTTPS (8443)
+      nxos_nxapi:
+        http_port: 8080
+        http: yes
+        https_port: 8443
+        https: yes
+
+    - name: Enable NXAPI to use-vrf management
+      nxos_config:
+        lines: nxapi use-vrf management
 
     - name: Enable the OSPF feature on each switch
       nxos_feature:

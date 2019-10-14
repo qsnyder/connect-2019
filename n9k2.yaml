@@ -1,15 +1,15 @@
 ---
 #
 # Initial testing of Ansible automation on NXOS9000v in VIRL
-# Demonstration of linear playbook for single host (n9k2) using CLI/SSH transport
+# Demonstration of linear playbook for single host (n9k2) using network_cli transport
 #
-# Author: Quinn Snyder, Systems Engineer | Enterprise Southwest .:|:.:|:. Cisco Systems
-# Date: 2018-02-01
-# Version: 0.1a
+# Author: Quinn Snyder, Systems Architect | Enterprise Southwest .:|:.:|:. Cisco Systems
+# Date: 2019-10-14
+# Version: 0.2a
 #
 - name: Demonstration of automation of Nexus 9000v-2 running in VIRL using Ansible CLI transport
   hosts: n9k2
-  connection: network
+  connection: network_cli
   gather_facts: no
 
   tasks:
@@ -35,7 +35,7 @@
       nxos_l3_interface:
         name: Ethernet1/2
         state: present
-        ipv4: 12.12.12.13/24
+        ipv4: 12.12.12.21/24
 
     - name: Enable the OSPF process on the switch
       nxos_ospf:

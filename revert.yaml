@@ -1,15 +1,14 @@
 ---
 #
-# Initial testing of Ansible automation on NXOS9000v in VIRL
 # Resetting of both NXOS9000v hosts back to original state using single playbook
 #
-# Author: Quinn Snyder, Systems Engineer | Enterprise Southwest .:|:.:|:. Cisco Systems
-# Date: 2018-02-26
-# Version: 0.1a
+# Author: Quinn Snyder, Systems Architect | Enterprise Southwest .:|:.:|:. Cisco Systems
+# Date: 2019-10-14
+# Version: 0.2a
 #
 - name: Reverting n9k1, n9k2 back to VIRL initialized state
   hosts: all
-  connection: network
+  connection: local
   gather_facts: no
   vars:
     nxapi:
@@ -48,3 +47,7 @@
         interface: loopback0
         state: absent
         provider: "{{ nxapi }}"
+
+    - name: Remove NXAPI configuration
+      nxos_nxapi:
+        state: absent
