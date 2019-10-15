@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "1ed9c783-2132-858c-ec8b-9d79b59bf6a8",
+		"name": "NXAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Connect-FY20 Workflow",
+			"item": [
+				{
+					"name": "Vagrant | n9kv1 | Configure OSPF",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_conf\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"feature ospf ;router ospf 1 ;router-id 1.1.1.1\",\n    \"output_format\": \"json\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://{{vagrant1}}/ins",
+							"protocol": "http",
+							"host": [
+								"{{vagrant1}}"
+							],
+							"path": [
+								"ins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vagrant | n9kv2 | Configure OSPF",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_conf\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"feature ospf ;router ospf 1 ;router-id 1.1.1.2\",\n    \"output_format\": \"json\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://{{vagrant2}}/ins",
+							"protocol": "http",
+							"host": [
+								"{{vagrant2}}"
+							],
+							"path": [
+								"ins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vagrant | n9kv1 | Configure Loopback0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_conf\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"interface Loopback0 ;description CONFIGURED WITH POSTMAN ;ip address 10.10.10.10/32 ;ip router ospf 1 area 0.0.0.0\",\n    \"output_format\": \"json\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://{{vagrant1}}/ins",
+							"protocol": "http",
+							"host": [
+								"{{vagrant1}}"
+							],
+							"path": [
+								"ins"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vagrant | n9kv2 | Configure Loopback0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_conf\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"interface Loopback0 ;description CONFIGURED WITH POSTMAN ;ip address 11.11.11.11/32 ;ip router ospf 1 area 0.0.0.0\",\n    \"output_format\": \"json\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://{{vagrant2}}/ins",
+							"protocol": "http",
+							"host": [
+								"{{vagrant2}}"
+							],
+							"path": [
+								"ins"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vagrant | n9kv1 | Configure Routing",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_conf\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"interface Ethernet 1/1 ;ip router ospf 1 area 0.0.0.0\",\n    \"output_format\": \"json\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://{{vagrant1}}/ins",
+							"protocol": "http",
+							"host": [
+								"{{vagrant1}}"
+							],
+							"path": [
+								"ins"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vagrant | n9kv2 | Configure Routing",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_conf\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"interface Ethernet 1/1 ;ip router ospf 1 area 0.0.0.0\",\n    \"output_format\": \"json\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://{{vagrant2}}/ins",
+							"protocol": "http",
+							"host": [
+								"{{vagrant2}}"
+							],
+							"path": [
+								"ins"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e2e74d50-c41f-418c-b5d1-08ce778ada72",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "412ddda5-5745-48d9-a158-433a51c3e4f3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Vagrant | n9kv1 | show interface ethernet 1/1",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_show\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"show interface ethernet 1/1\",\n    \"output_format\": \"json\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://{{vagrant1}}/ins",
+					"protocol": "http",
+					"host": [
+						"{{vagrant1}}"
+					],
+					"path": [
+						"ins"
+					]
+				},
+				"description": "Show interface ethernet1/1 on n9kv1 running in Vagrant on 10.95.73.152"
+			},
+			"response": []
+		},
+		{
+			"name": "Vagrant | n9kv1 | Configure Loopback0",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_conf\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"interface Loopback0 ;description CONFIGURED WITH POSTMAN ;ip address 10.10.10.10/32\",\n    \"output_format\": \"json\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://{{vagrant1}}/ins",
+					"protocol": "http",
+					"host": [
+						"{{vagrant1}}"
+					],
+					"path": [
+						"ins"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vagrant | n9kv1 | Loopback0 Running",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_show\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"show running-config interface Loopback0\",\n    \"output_format\": \"json\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://{{vagrant1}}/ins",
+					"protocol": "http",
+					"host": [
+						"{{vagrant1}}"
+					],
+					"path": [
+						"ins"
+					]
+				},
+				"description": "Show running configuration of Loopback0 from configuration"
+			},
+			"response": []
+		},
+		{
+			"name": "Vagrant | n9kv1 | Remove Loopback0",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ins_api\": {\n    \"version\": \"1.0\",\n    \"type\": \"cli_conf\",\n    \"chunk\": \"0\",\n    \"sid\": \"1\",\n    \"input\": \"no interface Loopback0\",\n    \"output_format\": \"json\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://{{vagrant1}}/ins",
+					"protocol": "http",
+					"host": [
+						"{{vagrant1}}"
+					],
+					"path": [
+						"ins"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "19a0939c-7611-4f4a-a087-0d31c0fc0487",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6f35a6c1-b95b-42c3-90b9-5f7e942d6f4a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
