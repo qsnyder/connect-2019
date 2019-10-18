@@ -35,6 +35,9 @@ vagrant up n9kv1
 vagrant up n9kv2
 ```
 
+## Postman  Collection
+Included in this repository is a simple Postman collection of API calls against the two N9000v running in the Vagrant environment. This collection can be imported and edited to test not only single calls, but also a chained set of calls using Postman Runner to perform basic automation.
+
 ## Usage
 Playbooks designed around (2) NXOS9000v hosts provisioned in VIRL.  Management interfaces are tied to FLAT network, configured using "infrastructure only" mode within VIRL.  E1/1 and E1/2 interfaces are connected between the switch pair.  0/0 route for management traffic is configured.  All other configuration is default on the devices.
 
