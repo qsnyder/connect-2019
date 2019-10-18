@@ -15,6 +15,10 @@ interface Ethernet1/1
 
 in order for traffic to pass between the devices accordingly.
 
+A simple diagram is given below
+
+![Vagrant topology](images/vagrant.png)
+
 Exposed ports are given in the table
 
 | Device | Protocol | Port |
@@ -33,6 +37,12 @@ vagrant up n9kv2
 
 ## Usage
 Playbooks designed around (2) NXOS9000v hosts provisioned in VIRL.  Management interfaces are tied to FLAT network, configured using "infrastructure only" mode within VIRL.  E1/1 and E1/2 interfaces are connected between the switch pair.  0/0 route for management traffic is configured.  All other configuration is default on the devices.
+
+The playbooks were designed to automate against the below topology
+
+![VIRL topology](images/virl.png)
+
+The VIRL topology file is also included in the `virl` folder in the repository
 
 ## Ansible Files
 
